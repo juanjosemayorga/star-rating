@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { AddColor } from './components/Colors/AddColor';
+import { ColorList } from './components/Colors/ColorList';
+import { ColorsProvider } from './context/ColorContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorState>
+      <div
+        className="App"
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '16px'
+        }}>
+        <AddColor />
+        <ColorList />
+      </div>
+    </ColorState>
   );
+}
+
+const ColorState = ({ children }: any) => {
+  return (
+    <ColorsProvider>
+      {children}
+    </ColorsProvider>
+  )
 }
 
 export default App;
